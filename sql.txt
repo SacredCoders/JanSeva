@@ -102,19 +102,27 @@ create table if not exists schemes
 scId varchar(20) PRIMARY KEY NOT NULL, 
 name varchar(50) NOT NULL,
 duration varchar(20) NOT NULL,
-document varchar(15) NOT NULL,
-eligibility varchar(10) NOT NULL
+document varchar(15) NOT NULL
 )ENGINE=InnoDB;
 
 
-create table if not exists documents
+create table if not exists eligibility
 (
-fileId varchar(20) PRIMARY KEY NOT NULL,
-appId varchar(20)  NOT NULL, 
-filepath varchar(50) NOT NULL,
-description varchar(20) NOT NULL,
-FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE
+scId varchar(20) NOT NULL,
+eligibility varchar(10) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId)
 )ENGINE=InnoDB;
+
+
+
+	create table if not exists documents
+	(
+	fileId varchar(20) PRIMARY KEY NOT NULL,
+	appId varchar(20)  NOT NULL, 
+	filepath varchar(50) NOT NULL,
+	description varchar(20) NOT NULL,
+	FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE
+	)ENGINE=InnoDB;
 
 
 insert into documents values(2000,1,"C:/","aadhar");
