@@ -1,0 +1,156 @@
+////// DATABASE 1 ////////
+create database citizens;
+
+use database citizens;
+
+create table if not exists citizen_details
+(
+contactNo varchar(20) PRIMARY KEY NOT NULL, 
+firstname varchar(50) NOT NULL,
+secondname varchar(50) NOT NULL,
+dob date NOT NULL,
+sex varchar(10) NOT NULL,
+address varchar(150) NOT NULL,
+city varchar(20) NOT NULL,
+caste varchar(15) NOT NULL,
+religion varchar(15) NOT NULL,
+pincode varchar(10) NOT NULL,
+occupation varchar(15) NOT NULL,
+membersPerFamily int(3) NOT NULL,
+noOfEarnings int(3) NOT NULL,
+salary decimal(20,2) NOT NULL,
+password varchar(30) NOT NULL
+)ENGINE=InnoDB;
+
+
+Insert into citizen_details VALUES(7775026761,"nishant","nimbalkar","1998-10-09","male","301,Shiv Krupa","badlapur","hindu","maratha",421503,"student",4,1,100000,"hashed");
+
+Insert into citizen_details VALUES(7775026761,"nishant","nimbalkar",1998-10-09,"male","301,Shiv Krupa","badlapur","hindu","maratha",421503,"student",4,1,100000,"hashed");
+
+
+create table if not exists citizen_details_temp
+(
+contactNo varchar(20) PRIMARY KEY NOT NULL, 
+firstname varchar(50) NOT NULL,
+secondname varchar(50) NOT NULL,
+dob date NOT NULL,
+sex varchar(10) NOT NULL,
+address varchar(150) NOT NULL,
+city varchar(20) NOT NULL,
+caste varchar(15) NOT NULL,
+religion varchar(15) NOT NULL,
+pincode varchar(10) NOT NULL,
+occupation varchar(15) NOT NULL,
+membersPerFamily int(3) NOT NULL,
+noOfEarnings int(3) NOT NULL,
+salary decimal(20,2) NOT NULL,
+password varchar(30) NOT NULL,
+time time NOT NULL,
+otp int(10) NOT NULL
+)ENGINE=InnoDB;
+
+
+
+create table if not exists applied_schemes(
+appId varchar(20) PRIMARY KEY NOT NULL,
+contactNo varchar(20) NOT NULL,
+date date NOT NULL,
+link varchar(20) NOT NULL,
+status varchar(5) NOT NULL,
+FOREIGN KEY (contactNo) REFERENCES citizen_details(contactNo) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+Insert into applied_schemes values(1,7775026761,"2018-08-12 10:35:05","somelink.com",2);
+Insert into applied_schemes values(2,8422047749,"2018-08-12 10:42:05","url.com",1);
+
+
+//////DATABASE 2//////////
+
+create database waterdept;
+
+
+//city to be used for distribution of schemes in table employee
+
+create table if not exists employee
+(
+eId varchar(20) PRIMARY KEY NOT NULL, 
+firstname varchar(50) NOT NULL,
+secondname varchar(50) NOT NULL,
+zone varchar(15) NOT NULL,
+designation varchar(10) NOT NULL,
+city varchar(20)
+)ENGINE=InnoDB;
+
+Insert into employee values(1000,"pawan","maurya","asalpha","chef","ghatkoper");
+Insert into employee values(1000,"jayesh","kukreja","ambernath","chef","thane");
+
+
+create table if not exists application_assigned(
+unId varchar(20) PRIMARY KEY NOT NULL,
+eId varchar(20)  NOT NULL,
+appId varchar(20)  NOT NULL,
+FOREIGN KEY (eId) REFERENCES employee(eId) ON DELETE CASCADE,
+FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+Insert into application_assigned values(1000,1);
+
+
+create table if not exists schemes
+(
+scId varchar(20) PRIMARY KEY NOT NULL, 
+name varchar(50) NOT NULL,
+duration varchar(20) NOT NULL,
+document varchar(15) NOT NULL,
+eligibility varchar(10) NOT NULL
+)ENGINE=InnoDB;
+
+
+create table if not exists documents
+(
+fileId varchar(20) PRIMARY KEY NOT NULL,
+appId varchar(20)  NOT NULL, 
+filepath varchar(50) NOT NULL,
+description varchar(20) NOT NULL,
+FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+insert into documents values(2000,1,"C:/","aadhar");
+
+create table if not exists record
+(
+scId varchar(20) NOT NULL, 
+contactNo varchar(20) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE,
+FOREIGN KEY (contactNo) REFERENCES citizens.citizen_details(contactNo) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+
+
+
+
+
+
+//////DATABASE 3///////
+create database if not exists superad;
+
+create table department
+(
+deptId varchar(20) PRIMARY KEY NOT NULL,
+deptName varchar(30) NOT NULL,
+server varchar(15) NOT NULL
+)ENGINE=InnoDB;
+
+Insert into department values(1,"water","256.1.1.6");
+Insert into department values(2,"fire","256.3.1.150");
+
+
+
+
+/////////////////DATA ///////////////
+
+
+
