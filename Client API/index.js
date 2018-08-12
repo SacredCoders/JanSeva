@@ -1,60 +1,100 @@
 //Modules
 const express =require('express');
-const Joi = require('joi');
 const mysql = require('mysql');
 const uuid = require('uuid/v4');
 const session = require('express-session')
 const FileStore = require('session-file-store')(session);
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
 //DATABASE CONSTANTS
-const citizens = "citizens-323782b5";
-const super_admin = "super-3237d2b9";
-const water = "waterdept-323749a3";
+const citizens = "citizens";
+const super_admin = "super";
+const water = "water";
 
-//DUMMY DB [NOT USED]
-const users = [
-  {id: '2f24vvg', email: 'test@test.com', password: 'password'}
-]
+//DATABASE SELECT
+function query(database,sql,res){
+const con = mysql.createConnection({
+  host:"localhost",
+  user: "root",
+  password: "",
+  database:database
+});
 
-/*
-QUERY [REFERENCE]
 con.connect(function(err) {
   if (err) throw err;
-  con.query("SELECT * FROM customers", function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-  });
-});
-*/
+  console.log("connected");
 
-//DATABASE[FUTURE USE]
-function query(database,sql){
+con.query(sql,function (err, result, fields){
+  if (err) throw err;
+  res.status(200).json(result);
+ });
+});	
+}
+
+//DATABASE INSERT
+function insert(database,sql,values,res,info){
+info = info || null;
 const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"51004",
-  user: "pritesh",
-  password: "sacred123",
+  host:"localhost",
+  user: "root",
+  password: "",
   database:database
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("connected");
+
+con.query(sql,[values],function (err, result, fields){
+  if (err) throw err;
+  res.status(201).send(info);
+ });
+});	
+}
+
+//DATABASE LOGIN
+function login(req,res){
+const con = mysql.createConnection({
+  host:"localhost",
+  user: "root",
+  password: "",
+  database:"citizens"
 });
 con.connect(function(err) {
   if (err) throw err;
   console.log("connected");
-  con.query(sql,function (err, result, fields){
+  con.query("select *from citizen_details where contactNo = '"+req.body.contactNo+"' and password = '"+req.body.password+"'", function (err, result, fields){
     if (err) throw err;
-    console.log(result); 
-    return(result);
+    console.log(result);
+    if(result.length==1){
+    req.session.contactNo=req.body.contactNo; 
+    return res.status(200).send("LOGIN");
+  }
+  	else{
+  	return res.status(401).send("FAILED");
+  	}
  });
-});
+ });
+}
+
+function isLogin(req){
+if(req.session.contactNo){
+	return true;
+}
+else{
+return false;
+}
+}
+
+function logout(req){
+	req.session.contactNo = null;
 }
 
 //Server
 const app = express();
 
 //Middleware
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(session({
   genid: (req) => {
@@ -69,66 +109,99 @@ app.use(session({
 }))
 
 //Routes
+
+//DEVELOPMENT USE[SKIP]
 app.get('/',(req,res)=>{
-/*Future use
-  Redirect:departments
-*/
-req.session.views = 1;
-res.send('Home');
+if(isLogin(req)){
+	res.send('LOGGED IN');
+}
+else{
+	res.redirect('/login');
+}
 });
 
 //LOGIN
 app.post('/login',(req, res)=>{
-/*
-Post data:
-Phone number
-Password 
-
-Return:
-select *from citizens.citizens_details where phone_no = inp and dfsf ..;
-session.id = phone_no;
-Session object(Phone number)
-
-Redirect: 
-Departments 
-*/
-const contactNo = req.body.contactNo;
-const password = req.body.password;
-
-const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"51134",
-  user: "super-admin-32363121",
-  password: "sacred123",
-  database:"citizen"
-});
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("connected");
-  con.query("select *from citizens where contactNo = "+req.body.contactNo+"and password = "+req.body.password, function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-
-    if(result!=null){
-    req.session.contactNo=contactNo; 
-    return res.status(200);
-  }
-
- });
- });
-  req.status(401);
+login(req,res); 
 })
+
+//LOGOUT
+app.get('/logout',(req,res)=>{
+logout(req);
+res.status(200).send("LOGGED OUT");	
+})
+
+//LIST DEPARTMENTS
+app.get('/departments',(req,res)=>{
+if(isLogin(req)){
+	const sql = "select *from department";
+	query(super_admin,sql,res);
+}
+else{
+	res.redirect('/login');}	
+});
+
+//VIEW SCHEMES
+app.get('/:department/all_schemes',(req,res)=>{
+if(isLogin(req)){
+	const sql = "select *from schemes";
+	query(req.params.department,sql,res);;
+}
+else{
+	res.redirect('/login');
+}
+});
+
+//APPLIED SCHEMES
+app.get('/applied_schemes/',(req,res)=>{
+if(isLogin(req)){
+	const sql = "select *from applied_schemes where contactNo="+req.session.contactNo;
+	query(citizens,sql,res);
+}
+else{
+	res.redirect('/login');
+}
+});
+
+//APPLY SCHEME [DB need update department,scheme_id]
+app.post('/:department/apply_scheme/:scmid',(req,res)=>{
+if(isLogin(req)){
+	const sql = "insert into applied_schemes values ?";
+	var d = new Date();
+	var month = d.getUTCMonth()+1;
+	var day = d.getUTCDate();
+	var year = d.getUTCFullYear();
+	date = year + "/" + month + "/" + day;
+	const values=[[8,req.session.contactNo,date,req.params.scmid,'placed']];
+	insert(citizens,sql,values,res);
+}
+else{
+	res.redirect('/login');
+}
+});
+
+//NOTIFICATIONS
+app.get('/notifications',(req,res)=>{
+if(isLogin(req)){
+	const sql = "select *from citizen_details where contactNo="+req.session.contactNo;
+	query(citizens,sql,res);
+}
+else{
+	res.redirect('/login');
+}
+});
+
+//ELIGIBLE SCHEMES
+app.get('/:department/eligible_schemes',(req,res)=>{
+/*
+Return:
+select *from $departments.schemes where eligible like citizen.additional_details;
+*/
+
+});
 
 //SIGNIN
 app.post('/signin',(req,res)=>{
-/*
-Post data:
-Falana dighana dhimkhana
-Return:
-OTP verification
-Redirect:  
-login page
-*/
 const contactNo = req.body.contactNo;
 const firstname = req.body.firstname;
 const secondname = req.body.secondname;
@@ -140,197 +213,68 @@ const caste = req.body.caste;
 const religion = req.body.religion;
 const pincode = req.body.pincode;
 const occupation = req.body.occupation;
-const membersPerFamily = req.body.membersPerFamily;
-const numberOfEarnings = req.body.numberOfEarnings;
-const salary = req.body.salary;
+const membersPerFamily = parseInt(req.body.membersPerFamily);
+const numberOfEarnings = parseInt(req.body.numberOfEarnings);
+const salary = parseFloat(req.body.salary);
 const password = req.body.password;
 const time = new Date().toLocaleTimeString();
-const otp = Math.floor(Math.random() * Math.floor(99999));;
-const values = [contactNo,firstname,secondname,dob,sex,address,city,caste,religion,pincode,occupation,membersPerFamily,numberOfEarnings,salary,password];
-
-const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"51134",
-  user: "citizen",
-  password: "sacred123",
-  database:"super-admin-32363121"
-});
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("connected");
-  con.query("insert into citizens_temp values ?",[values], function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-    req.session.contactNo=contactNo; 
-    otp = {'otp':otp};
-    return res.json(otp); 
- });
-  
-});
-res.send("signin");
+const otp_num = Math.floor(Math.random() * Math.floor(99999));;
+const values = [[contactNo,firstname,secondname,dob,sex,address,city,caste,religion,pincode,occupation,membersPerFamily,numberOfEarnings,salary,password,time,otp_num]];
+console.log(values);
+const sql = "insert into citizen_details_temp values ?";
+req.session.contactNo=contactNo; 
+const otp = {'OTP':otp_num};
+insert(citizens,sql,values,res,otp); 
 });
 
-//OTP
+//OTP[NEEDS WORK]
 app.post('/otp',(req,res)=>{
 
 const otp = req.body.otp;
+const time = new Date().toLocaleTimeString();
+
 const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"51134",//host: "shareddb-f.hosting.stackcp.net",
-  user: "super-admin-32363121",
-  password: "sacred123",
-  database:"super-admin-32363121"
+  host:"localhost",
+  user: "root",
+  password: "",
+  database:"citizens",
+  acquireTimeout: 1000000
 });
 con.connect(function(err) {
   if (err) throw err;
   console.log("connected");
-  con.query("select otp from citizen where contactNo="+req.params.contactNo, function (err, result, fields){
+  con.query("select otp,time from citizen_details_temp where contactNo="+req.session.contactNo, function (err, result, fields){
     if (err) throw err;
-    console.log(result);
-    if(result==otp){
-    con.query("delete from citizen where contactNo="+req.params.contactNo);  
-    con.query("insert into citizens values ?",[values], function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-    con.close();
-    return res.status(201);
- });
+    console.log(time+5);
+    if(result[0].otp==parseInt(otp) && time>result[0].time+5){
+    console.log("True");
+   con.query("SELECT `contactNo`, `firstname`, `secondname`, `dob`, `sex`, `address`, `city`, `caste`, `religion`, `pincode`, `occupation`, `membersPerFamily`, `noOfEarnings`, `salary`, `password` from citizen_details_temp where contactNo="+req.session.contactNo,function(err,result,fields){
+   			 if (err) throw err;
+   			 console.log(result);
+   			 const values = [[result[0].contactNo,result[0].firstname,result[0].secondname,result[0].dob,result[0].sex,result[0].address,result[0].city,result[0].caste,result[0].religion,result[0].pincode,result[0].occupation,result[0].membersPerFamily,result[0].noOfEarnings,result[0].salary,result[0].password]];	 
+   			 console.log(values);
+   			 con.query("insert into citizen_details values ?",[values], function (err, result, fields){
+   			 	if (err) throw err;
+    			con.query("delete from citizen_details_temp where contactNo="+req.session.contactNo);
+    			return res.status(201).send();  
+   			 });
+ 	});
     }
 });
 });
 });
 
 
+// ChatBot [In progress]
+app.get('/chatbot',(req, res)=>{
+	const args1 = req.query.q;
+    const {spawn} = require('child_process');
+    const chatbot = spawn('python3', ['./hello.py',args1]);
+    chatbot.stdout.on('data', function(data) {
+    console.log(data.toString());
+    res.send(data);
+    });
+})	
 
-app.post('/update_profile',(req,res)=>{
-/*
-Put data:
-Phone number
-Update values 
-
-Return:
-Success
-
-Redirect:
-departments  
-*/
-res.send("Update profile");
-});
-
-app.get('/departments',(req,res)=>{
-/*
-Return:
-Select *from super_admin.departments;  
-*/
-//Connection
-const sql = "select *from departments";
-var results = query(super_admin,sql);
-console.log(results);
-return res.send(results);
-});
-
-//VIEW SCHEMES
-app.get('/:department/all_schemes',(req,res)=>{
-/*
-Return:
-select *from $departments.schemes;
-*/
-const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"50551",
-  user: "pritesh",
-  password: "sacred123",
-  database: department
-});
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("connected");
-  con.query("select *from citizen", function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-    return res.send(result);
- });
-});
-});
-
-//ELIGIBLE SCHEMES
-app.get('/:department/eligible_schemes',(req,res)=>{
-/*
-Return:
-select *from $departments.schemes where eligible like citizen.additional_details;
-*/
-
-res.send(req.params.department+" Eligible Schemes");
-});
-
-//APPLIED SCHEMES
-app.get('/applied_schemes/',(req,res)=>{
-/*
-Return:
-select *from citizens.applied_schemes where contact_no = session.id; 
-*/
-const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"50551",
-  user: "pritesh",
-  password: "sacred123",
-  database: "citizen"
-});
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("connected");
-  con.query("select *from applied_schemes", function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-    return res.send(result);
- });
-});
-res.send("Applies Schemes"+req.session.views++);
-});
-
-//NOTIFICATIONS
-app.get('/notifications',(req,res)=>{
-
-res.send("Notifications");
-});
-
-//
-
-//APPLY SCHEME
-app.post('/:department/apply_scheme/:scmid',(req,res)=>{
-/*
-Post Data:
-Scheme ID
-Department ID/Name
-Documments(single)
-Redirect:
-applied_schemes
-*/
-
-const con = mysql.createConnection({
-  host:"mysql.stackcp.com",
-  port:"50551",
-  user: "pritesh",
-  password: "sacred123",
-  database: department
-});
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("connected");
-  con.query("insert into applied_schemes values ?",[values], function (err, result, fields){
-    if (err) throw err;
-    console.log(result);
-    return res.status(201);
- });
-});
-res.send("Apply Scheme for "+req.params.department+" scheme:"+req.params.scmid);
-});
-
-app.put('/update_scheme/:scmid',(req,res)=>{
-/*
-Future scope
-*/
-res.send("Update Scheme " + req.params.scmid);
-});
 
 app.listen(7000);
