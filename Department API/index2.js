@@ -206,14 +206,14 @@ query(req.params.department,sql,res);
 
 //VIEW ASSIGNED APPLICATIONS
 app.get('/:department/inbox',(req,res)=>{
-const sql="select *from application_assigned where empId"=req.session.empId;
+const sql="select *from application_assigned where empId= "+req.session.empId;
 query(req.params.department,sql,res);
 });
 
 //VERIFY APPLICATIONS
 app.put('/:department/inbox/update/:appId',(req,res)=>{
 const status = req.body.status;	
-const sql="update applied_schemes set applicationStatus = "+status+" where appId"=appId;
+const sql="update applied_schemes set applicationStatus = "+status+" where appId ="+appId;
 query(citizens,sql,res);
 });
 
