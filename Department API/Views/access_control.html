@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Access Control</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body{
+				width: 100%;
+				height: 100%;
+				background-color: #f5683d;
+			}
+
+			.main_ul{
+				position: sticky;
+			}
+			ul{
+				margin-left: 43%;
+				list-style: none;
+				margin-top: 1%;
+			}
+
+			ul li{
+				background-color: black;
+				width: 9vw;
+				height: 7vh;
+				text-align: center;
+				float: left;
+				line-height: 7vh;
+				opacity: 0.8;
+			}
+
+			ul li:hover{
+				background-color: lightblue;
+			}
+
+			ul li a{
+				display: block;
+				text-decoration: none;
+				color: white;
+			}
+
+			ul li ul{
+				margin: 0;
+			}
+
+			ul li ul li{
+				display: none;
+			}
+
+			ul li:hover ul li{
+				display: block;
+			}
+
+			.form{
+				position: absolute;
+				width: 400px;
+				height: 500px;
+				background-color: lightblue;
+				border-radius: 25px;
+				margin-top: 5%;
+				margin-left: 25%;
+			}
+
+			.designationId{
+				font-size: 18px;
+				margin-left: 25px;
+				margin-bottom: 10px;
+				margin-top: 7%;
+			}
+
+			select{
+				margin-left: 25px;
+				margin-bottom: 25px;
+				width: 300px;
+				height: auto;
+				padding: 5px 5px;
+			}
+
+			input[type="checkbox"]{
+				margin-left: 25px;
+				margin-bottom: 7px;
+				margin-top: 7px;
+				margin-right: 15px;
+			}
+
+			input[type="submit"]{
+				margin-left:175px;
+				margin-top: 30px;
+				padding: 10px;
+				background-color: blue;
+				font-size: 16px;
+			}
+
+			input[type="submit"]:hover{
+				background-color: lightgreen;
+				box-shadow: 5px 7px 10px grey;
+			}
+
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Designation</a>
+					<ul>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Schemes</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Update</a></li>
+						<li class="sublist"><a href="#">Remove</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Inbox</a>
+					<ul>
+						<li class="sublist"><a href="#">New</a></li>
+						<li class="sublist"><a href="#">Completed</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Employee</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#">Logout</a></li>
+
+			</ul>
+		</nav>
+		<div class="main_form">
+			<form class="form">
+				<p class="designationId">Designation Id/Name : </p>
+				<select>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+					<option value=""></option>
+				</select>
+				<br>
+
+				<input type="checkbox" name="grant" value=grant" checked>Grant<br>
+				<input type="checkbox" name="add_schemes" value="add_schemes">Add Schemes<br>
+				<input type="checkbox" name="add_employee" value="add_employee">Add Employee<br>
+				<input type="checkbox" name="assign_application" value="assign_application">Assign Application<br>
+				<input type="checkbox" name="verify_application" value="verify_application">Verify Application<br>
+				<input type="checkbox" name="receives_schemes" value="receives_schemes">Receives Schemes<br>
+				<input type="checkbox" name="statistics" value="statistics">View Statistics<br>
+				<input type="checkbox" name="view_schemes" value="view_schemes">View Schemes<br>
+				<input type="checkbox" name="view_employee" value="view_employee">View Employee<br>
+
+				<div> <input type="submit" name="submit"></div>
+
+			</form>
+		</div>
+	</body>
+</html>

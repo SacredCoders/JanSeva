@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>navbar</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body{
+				width: 100%;
+				height: 100%;
+				background-color: #f5683d;
+			}
+
+			ul{
+				margin-left: 40%;
+				list-style: none;
+				margin-top: 1%;
+			}
+
+			ul li{
+				background-color: black;
+				width: 9vw;
+				height: 7vh;
+				text-align: center;
+				float: left;
+				line-height: 7vh;
+				opacity: 0.8;
+			}
+
+			ul li:hover{
+				background-color: lightblue;
+			}
+
+			ul li a{
+				display: block;
+				text-decoration: none;
+				color: white;
+			}
+
+			ul li ul{
+				margin: 0;
+			}
+
+			ul li ul li{
+				display: none;
+			}
+
+			ul li:hover ul li{
+				display: block;
+			}
+
+			.form{
+				position: absolute;
+				background-color: lightblue;
+				width: 500px;
+				height: auto;
+				overflow: auto;
+				margin-left: 30%;
+				margin-top: 5%;
+				border-radius: 30px;
+				padding-left: 50px;
+				padding-top: 30px;
+				padding-bottom: 30px;
+			}
+
+			.data{
+				background-color: lightgreen;
+				width: 400px;
+				border-radius: 30px;
+				padding-left: 50px;
+				padding-top: 30px; 
+				padding-bottom: 30px;
+				margin-bottom: 15px;
+			}
+
+			.id_scheme{
+				font-size: 16px;
+				padding-bottom: 5px;
+			}
+
+			.scheme_name{
+				font-size: 16px;
+				padding-bottom: 5px;
+			}
+
+			input[type="text"]{
+				padding: 6px;
+				border-radius: 10px;
+				margin-bottom: 10px;
+			}
+
+			input[type="date"]{
+				margin-top: 10px;
+				margin-bottom: 10px;
+				padding: 5px;
+				border-radius: 10px;
+			}
+
+			.district_names{
+				padding-top:0;
+				padding-bottom: 20px;
+			}
+
+			select[name="district"]{
+				width: 200px;
+				height: 55px;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			.requiredDocuments{
+				padding-bottom: 20px;
+			}
+
+			.others{
+				margin-top: 5px;
+			}
+
+			select[name="required_documents"]{
+				width: 100px;
+				height:55px;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			.eligibility{
+				background-color: lightgreen;
+				width: 400px;
+				border-radius: 30px;
+				padding-left: 50px;
+				padding-top: 30px; 
+				padding-bottom: 30px;
+				margin-bottom: 15px;
+			}
+
+			.name_eligible{
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+			.religion{
+				margin-bottom: 15px;
+			}
+
+			select[name="religions"]{
+				width: 100px;
+				height:55px;
+				border-radius: 10px;
+				padding: 5px;
+				padding-bottom: 15px;
+			}
+
+			.caste{
+				margin-top: 5px;
+				margin-bottom: 15px;
+			}
+
+			select[name="castes"]{
+				width: 100px;
+				height:55px;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			.relativeInfo{
+				background-color: lightgreen;
+				width: 400px;
+				border-radius: 30px;
+				padding-left: 50px;
+				padding-top: 30px; 
+				padding-bottom: 30px;
+				margin-bottom: 15px;
+			}
+
+			.age{
+				margin-bottom: 15px;
+			}
+
+			select[name="ages"]{
+				width: 100px;
+				height:55px;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			.occupation{
+				margin-bottom: 15px;
+			}
+
+			select[name="occupations"]{
+				width: 100px;
+				height:55px;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			.income{
+				margin-bottom: 15px;
+			}
+
+			select[name="incomes"]{
+				width: 200px;
+				height:25px;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			.gender{
+				padding: 5px;
+			}
+
+			input[type="checkbox"]{
+				margin: 6px;
+			}
+
+			input[type="submit"]{
+				margin-top: 10px;
+				margin-left: 150px;
+				padding: 10px;
+				background-color: blue;
+			}
+
+			input[type="submit"]:hover{
+				background-color: lightgreen;
+				box-shadow: 5px 7px 10px grey;
+				transform: scale(1.2);
+			}
+
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Designation</a>
+					<ul>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Schemes</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Update</a></li>
+						<li class="sublist"><a href="#">Remove</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Inbox</a>
+					<ul>
+						<li class="sublist"><a href="#">New</a></li>
+						<li class="sublist"><a href="#">Completed</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Employee</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Logout</a></li>
+				
+			</ul>
+		</nav>
+
+		<div>
+			<form class="form">
+				<div class="data">
+					<p class="id_scheme">Scheme Id : 
+					<input type="text" name="schemeid" placeholder="Enter the Scheme Id"></p>
+
+					<p class="scheme_name">Name of Scheme : 
+					<input type="text" name="name_of_scheme" placeholder="Name of Scheme"></p>
+
+					<p class="startdate">Start Date :
+						<input type="date" name="startDate">
+					</p>
+
+					<p class="enddate">End Date :
+						<input type="date" name="endDate">
+					</p>
+
+					<p class="district_names">Districts : 
+						<select name="district" multiple>
+							<option value="mumbai">Mumbai</option>
+							<option value="thane">Thane</option>
+							<option value="navi mumbai">Navi Mumbai</option>
+							<option value="pune">Pune</option>
+							<option value="kurla">Kurla</option>
+						</select>
+					</p>
+
+					<p class="requiredDocuments">Required Documents : 
+						<select name="required_documents" multiple>
+							<option value="poi">POI</option>
+							<option value="poa">POA</option>
+						</select>
+						<p class="others">Others : <input type="text" name="other" placeholder="other required documents"></p>
+					</p>
+			</div>
+
+			<div class="eligibility">
+				<p class="name_eligible">Eligibility :</p>
+
+				<p class="religion">Religion :
+					<select name="religions" multiple>
+						<option value="hindu">Hindu</option>
+						<option value="muslim">Muslim</option>
+						<option value="cristion">Cristion</option>
+						<option value="sikh">Sikh</option>
+						<option value="parsi">Parsi</option>
+					</select>
+					<p class="others">Others : <input type="text" name="other" placeholder="Enter your religion"></p>
+				</p>
+
+				<p class="caste">Caste :
+					<select name="castes" multiple>
+						<option value="kukreja">Kukreja</option>
+						<option value="nimbalkar">Nimbalkar</option>
+						<option value="maurya">Maurya</option>
+						<option value="pandey">Pandey</option>
+						<option value="sahuji">Sahuji</option>
+						<option value="satpute">Satpute</option>
+					</select>
+
+					<p class="others">Others : <input type="text" name="other" placeholder="Enter your caste"></p>
+
+				</p>
+
+			</div>
+
+			<div class="relativeInfo">
+				
+				<p class="age">Age :
+					<select name=ages multiple>
+						<option value="0-18">0-18</option>
+						<option value="19-40">19-40</option>
+						<option value="41-59">41-59</option>
+						<option value="60">60 and above</option>
+					</select>
+				</p>
+
+				<p class="occupation">Occupation :
+					<select name="occupations" multiple>
+						<option value="business">Business</option>
+						<option value="political">Political</option>
+						<option value="housewife">Housewife</option>
+						<option value=""></option>
+						<option value=""></option>
+					</select>
+
+					<p class="others">Others : <input type="text" name="other" placeholder="Enter your occupation"></p>
+
+				</p>
+
+				<p class="income">Incomes : 
+					<select name="incomes">
+						<option value="50000-100000">50000-100000</option>
+						<option value="100000-200000">100000-200000</option>
+						<option value="200000-300000">200000-300000</option>
+						<option value="300000-400000">300000-400000</option>
+						<option value="400000-500000">400000-500000</option>
+						<option value="600000">600000 and above</option>
+					</select>
+				</p>
+
+				<p class="gender">Sex : <input type="checkbox" name="male">Male <input type="checkbox" name="female">Female <input type="checkbox" name="other">Others</p>
+
+			</div>
+
+			<input type="submit" name="submit">
+
+			</form>	
+		</div>
+
+	</body>
+</html>
