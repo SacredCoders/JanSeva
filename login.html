@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			*{
+				box-sizing: border-box;
+			}
+			body{
+				background-color: #f5683d;
+				width: 100%;
+				height: 100%;
+			}
+
+			/*.back{
+				position: absolute;
+				background-color: lightblue;
+				display: inline-block;
+				margin-left: 4vw;
+				margin-top: -12vh;
+				padding: 2vh;
+			}
+
+			.back:hover{
+				background-color: green;
+				transform: scale(1.2);
+				box-shadow: 0.5vw 0.5vw 2vw grey;
+			}*/
+
+			.form_area{
+				position: relative;
+				width: 23vw;
+				height: 60vh;
+				background-color: lightblue;
+				margin: auto;
+				border-radius: 5vh;
+				padding: 5vw;
+				padding-left: 2vw;
+				margin-top: 15vh;
+				backface-visibility: hidden;
+				box-shadow: 1.5vh 1.5vw 3vw grey;
+			}
+
+			.userimg img{
+				position: absolute;
+				width:7vw;
+				height: 15vh;
+				border-radius: 50%;
+				margin-left: 6.6vw;
+				margin-top: -17vh;
+			}
+
+			#username{
+				font-size: 1.5vw;
+				padding-top: 2vh;
+				margin-top: 2vh;
+				margin-bottom: 1.5vh;
+			}
+
+			#password{
+				font-size: 1.5vw;
+				padding-top: 4vh;
+				margin-bottom: 1.5vh;
+			}
+			input[type="text"]{
+				width: 18vw;
+				padding:2vh;
+				border-radius: 5vw;
+			}
+			input[type="password"]{
+				width: 18vw;
+				padding: 2vh;
+				border-radius: 5vw;
+			}
+			.login{
+				position: absolute;
+				display: inline-block;
+				background-color: blue;
+				width: 5vw;
+				height: 6vh;
+				text-align: center;
+				padding-top: 1.5vh;
+				margin: 6vh 15vh 5vh;
+			}
+
+			.login:hover{
+				background-color: lightgreen;
+				box-shadow: 0.5vw 0.5vw 2vw grey;
+				transform-origin: center; 
+				transform: scale(1.3);
+			}
+
+			/*.or{
+				display: inline;
+				padding: 0px;
+				margin: 0px;
+				margin-left: 125px;
+				font-size: 20px;
+				font-weight: bold;
+			}
+
+			.signup{
+				display: inline-block;
+				background-color: red;
+				width: 75px;
+				height: 40px;
+				text-align: center;
+				padding-top: 10px;
+				margin: 20px 100px 30px;
+				
+			}
+			
+			.signup:hover{
+				background-color: lightgreen;
+				box-shadow: 5px 10px 20px grey;
+			}*/
+
+			/*.form_area:hover {
+				transform: rotateY(-180deg);
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<div class="mainContainer">
+			<!-- <div class="back">Back</div> -->
+			<form class="form_area">
+				<div class="userimg"><img src="usericon.jpg" width="75px" height="75px"></div>
+				
+				<p id="username">Username :</p>
+				<input type="text" name="username" placeholder="Enter the username">
+
+				<p id="password">Password :</p>
+				<input type="password" name="password" placeholder="Enter the password">
+				<br>
+
+				<div class="login">Login</div>
+				<!-- <p class="or"> Or </p>
+				<div class="signup">Signup</div>
+				 -->
+	<!-- 		<input type="submit" name="submit"> -->
+					
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
