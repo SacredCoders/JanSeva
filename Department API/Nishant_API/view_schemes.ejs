@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Schemes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="top_menu.css">
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body{
+				width: 100%;
+				height: 100%;
+				background-color: #f5683d;
+			}
+
+			nav{
+				position: relative;
+				z-index: 999;
+			}
+
+			ul{
+				margin-left: 40%;
+				list-style: none;
+				margin-top: 1%;
+			}
+
+			ul li{
+				background-color: black;
+				width: 9vw;
+				height: 7vh;
+				text-align: center;
+				float: left;
+				line-height: 7vh;
+			}
+
+			ul li:hover{
+				background-color: lightblue;
+			}
+
+			ul li a{
+				display: block;
+				text-decoration: none;
+				color: white;
+			}
+
+			ul li ul{
+				margin: 0;
+			}
+
+			ul li ul li{
+				display: none;
+			}
+
+			ul li:hover ul li{
+				display: block;
+			}
+
+			.table{
+				position: absolute;
+				margin-top: 5%;
+				width: 100%;
+				height: auto;
+				background-color: lightblue;
+			}
+
+			table tr th{
+				border: 1px solid black;
+				border-collapse: collapse;
+				text-align: center;
+			}
+
+			tr{
+				width: 100%;
+			}
+
+			th{
+				width: 6.667%;
+			}
+
+			td{
+				text-align: center;
+				width: 6.667%;
+			}
+
+			tr th{
+				padding: 2px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Designation</a>
+					<ul>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Schemes</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Update</a></li>
+						<li class="sublist"><a href="#">Remove</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Inbox</a>
+					<ul>
+						<li class="sublist"><a href="#">New</a></li>
+						<li class="sublist"><a href="#">Completed</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Employee</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Logout</a></li>
+
+			</ul>
+		</nav>
+		
+		<div class="table">
+			<table id="myTable">
+				<tr class="column">
+					<th>scId</th>
+					<th>Name</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Eligible Caste</th>
+					<th>Eligible Age</th>
+					<th>Eligible Occupation</th>
+					<th>Eligible Sex</th>
+					<th>Eligible Religion</th>
+					<th>Eligible Others</th>
+					<!-- <th>Date of Creation</th>
+					<th>Date of Deletion</th>
+					<th>Last Modified</th>
+					<th>Is Delete</th>
+					 -->
+				</tr>
+				
+				<script type="text/javascript">
+				var row= <%-JSON.stringify(scId)%>;
+				for(var i=0;i<row.length;i++){
+				document.write("<tr>");
+				for(var j=0;j<1;j++){
+				document.write("<td>");
+				document.write(row[i].scId);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].name);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].startDate);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].endDate);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].eligibleCaste);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].eligibleAge);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].eligibleOccupation);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].eligibleSex);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].eligibleReligion);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].eligibleOthers);
+				document.write("</td>");
+				}
+				document.write("</tr>");
+			}
+				</script>
+				
+				
+			</table>
+
+		</div>
+
+<script type="text/javascript">
+var row= <%-JSON.stringify(scId)%>
+var=[row[0].scId,row[1].scId];
+
+document.write(row[0].scId);
+document.write(row[0].name);
+
+var i;
+for(i=0;i<1;i=i+1)
+{
+	//function myFunction() {
+    var table = document.getElementById("myTable");
+    var row = table.insertRow(1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+    var cell9 = row.insertCell(8);
+     var cell10 = row.insertCell(9);
+    // var cell11 = row.insertCell(10);
+    // var cell12= row.insertCell(11);
+    // var cell13 = row.insertCell(12);
+    // var cell14 = row.insertCell(13);
+    // var cell15= row.insertCell(14);
+
+    // cell1.innerHTML = "<%= scId[0].scId %>";
+    // cell2.innerHTML = "<%= scId[0].name %>";
+    // cell3.innerHTML = "<%= String(scId[0].startDate) %>";
+    // cell4.innerHTML = "<%= String(scId[0].endDate) %>";
+    // cell5.innerHTML = "<%= String(scId[0].eligibleCaste) %>";
+    // cell6.innerHTML = "<%= String(scId[0].eligibleAge) %>";
+    // cell7.innerHTML = "<%= String(scId[0].eligibleOccupation) %>";
+    // cell8.innerHTML = "<%= String(scId[0].eligibleSex) %>";
+    // cell9.innerHTML = "<%= String(scId[0].eligibleReligion) %>";
+    // cell10.innerHTML = "<%= String(scId[0].eligibleOthers) %>";
+
+    cell1.innerHTML = temp[0];
+    cell2.innerHTML = temp[1];
+    cell3.innerHTML = row[0].startDate;
+    cell4.innerHTML = row[0].endDate;
+    cell5.innerHTML = row[0].eligibleCaste;
+    cell6.innerHTML = row[0].eligibleAge;
+    cell7.innerHTML = row[0].eligibleOccupation;
+    cell8.innerHTML = row[0].eligibleSex;
+    cell9.innerHTML = row[0].eligibleReligion;
+    cell10.innerHTML = row[0].eligibleOthers;
+    // cell11.innerHTML = "NEW CELL2";
+    // cell12.innerHTML = "NEW CELL2";
+    // cell13.innerHTML = "NEW CELL2";
+    // cell14.innerHTML = "NEW CELL2";
+    // cell15.innerHTML = "NEW CELL2";
+
+	//}	
+}
+
+</script> 
+<!-- <button onclick="myFunction()">Try it</button> --> 
+
+<!-- <script>var d= "<%= String(scId[0].name) %>"
+	document.write("sfasdfsaf "+d);
+	console.log("sfasdfsaf"+d);
+
+</script> -->
+	</body>
+</html>
