@@ -10,9 +10,9 @@ app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("css"));
-app.get('/login',(req,res)=>{
-	res.render("login.ejs",{hello:" "});
-});
+
+
+
 
 
 
@@ -29,10 +29,10 @@ function query(sql,page,res){
 	if(err) throw err;
 	console.log("Connected");
 	con.query(sql,function(err,result,fields){
-		if(err) throw err;
+	if(err) throw err;
 	console.log(result);
 	//for(var i=0;i<2;i++){
-		return res.render(page,{scId:result});
+	return res.render(page,{scId:result});
 	//}
 	//res.render("view_schemes.ejs",{scId:result[0].scId});
 });
@@ -40,7 +40,9 @@ function query(sql,page,res){
 
 }
 
-
+app.get('/login',(req,res)=>{
+	res.render("login.ejs",{hello:" "});
+});
 
 
 app.post('/login',(req,res)=>{
@@ -85,13 +87,61 @@ app.get('/view_schemes',(req,res)=>{
 	const page ="view_schemes.ejs";
 	var sql="select * from schemes";
 	query(sql,page,res);
-	//res.render("view_schemes.ejs",{hello:" "});
 });
+
+
+app.get('/employee_view',(req,res)=>{
+	const page ="employee_view.ejs";
+	var sql="SELECT employee.empId,employee.firstName,employee.lastName,employee.pincode,roles.designationName FROM employee INNER JOIN roles ON employee.designationId=roles.designationId;";
+	query(sql,page,res);
+});
+
 /*
-app.post('/view_schemes',(req,res)=>{
-	res.write("sdafa");
-	res.render("view_schemes.ejs",{hello:"name"});
-});
+SELECT employee.empId,employee.firstName,employee.lastName,employee.pincode,roles.designationName
+FROM employee
+INNER JOIN roles ON employee.designationId=roles.designationId;
 */
+
+function query_post(sql,page,res){
+	const con = mysql.createConnection({
+	  host: "localhost",
+	  user: "root",
+	  password: "",
+	  database:"waterdept"
+	});
+	//console.log(req.body.username);
+	//console.log(req.body.password)
+	con.connect(function(err){
+	if(err) throw err;
+	console.log("Connected");
+	con.query(sql,function(err,result,fields){
+	if(err) throw err;
+	console.log(result);
+	//for(var i=0;i<2;i++){
+	return res.render(page);
+	//}
+	//res.render("view_schemes.ejs",{scId:result[0].scId});
+});
+});
+
+}
+
+
+
+
+
+app.get('/addemployee',(req,res)=>{
+	res.render("addemployee.ejs",{hello:" "});
+});
+
+app.post('/addemployee',(req,res)=>{
+	const page ="navbar.ejs";
+	var temp="select designationId from roles where designationName='"+req.body.designation_name+"';" 
+	console.log("temp is "+temp);
+	//var sql="insert into waterdept.employee values('"+req.body.emp_id+"','"+req.body.first_name+"','"+req.body.last_name+"','"+req.body.pin_code+"','"temp"'');";
+	//query_post(sql,page,res);
+	//res.render("addemployee.ejs",{hello:"error"});
+});
+//req.body.emp_id,req.body.first_name,req.body.last_name,req.body.pin_code,req.body.designation_name
 
 app.listen(port,function(){console.log(`Listening at port ${port}`);});

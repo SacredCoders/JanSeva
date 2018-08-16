@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Add Employee</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="top_menu.css">
+		<style type="text/css">
+			.add_employee{
+				position: absolute;
+				background-color: lightblue;
+				width: 27vw;
+				height: 80vh;
+				margin-left: 35%;
+				margin-top: 6%;
+				border-radius: 5%;
+				padding: 4vw 5vw;
+			}
+
+			.employee_id{
+				font-size: 2.7vh;
+				padding-bottom: 1vh;
+			}
+
+			.first_name{
+				font-size: 2.7vh;
+				padding-bottom: 1vh;
+			}
+
+			.last_name{
+				font-size: 2.7vh;
+				padding-bottom: 1vh;
+			}
+
+			.pin_code{
+				font-size: 2.7vh;
+				padding-bottom: 1vh;
+			}
+
+			.designation_id{
+				font-size: 2.7vh;
+				padding-bottom: 1vh;
+			}
+
+			.email{
+				font-size: 2.7vh;
+				padding-bottom: 1vh;
+			}
+
+			input[type="text"],input[type="email"]{
+				width: 16vw;
+				padding: 0.7vh;
+				border-radius: 25px;
+			}
+
+			input[type="submit"]{
+				margin-left: 34%;
+				margin-top: 12%;
+				padding: 2vh;
+				background-color: blue;
+				border: none;
+			}
+
+			input[type="submit"]:hover{
+				background-color: lightgreen;
+				box-shadow: 0.7vh 0.7vw 6vh grey;
+				transform: scale(1.2);
+			}
+
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Designation</a>
+					<ul>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Schemes</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Update</a></li>
+						<li class="sublist"><a href="#">Remove</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Inbox</a>
+					<ul>
+						<li class="sublist"><a href="#">New</a></li>
+						<li class="sublist"><a href="#">Completed</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Employee</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#">Logout</a></li>
+					
+			</ul>
+		</nav>
+
+		<div class="main_content">
+			<form class="add_employee" action="/addemployee" method="post">
+				<p class="employee_id">Employee Id : <input type="text" name="emp_id" placeholder="Enter the employee id"></p>
+				<p class="first_name">First Name : <input type="text" name="first_name" placeholder="Enter the first name of Employee"></p>
+				<p class="last_name">Last Name : <input type="text" name="last_name" placeholder="Enter the last name of Employee "></p>
+				<p class="pin_code">Pin Code : <input type="text" name="pin_code" placeholder="Enter the pin code"></p>
+				<p class="designation_id">Designation Name : <input type="text" name="designation_name" placeholder="Enter the Designation Name"></p>
+				<!-- <p class="email">E-mail : <input type="email" name="email" placeholder="Enter the E-mail of Employee"></p> -->
+				<input type="submit" name="submit">
+			</form>
+		</div>
+	</body>
+</html>
