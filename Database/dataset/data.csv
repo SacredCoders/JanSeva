@@ -1,0 +1,94 @@
+////taluka name
+////pin code
+mapping
+district
+mapping
+
+
+insert into department values(1,"Chhattisgarh Water Resources Department","some description","localhost");
+insert into department values(2,"Department of Agriculture & Biotechnology","The Ministry of Agriculture and Farmers Welfare, a branch of the Government of Chhattisgarh, is the apex body for formulation and administration of the rules and regulations and laws related to agriculture in Chhattisgarh.","localhost");
+
+
+
+
+insert into caste(casteName) values("general");
+insert into caste(casteName) values("SC");
+insert into caste(casteName) values("OBC");
+insert into caste(casteName) values("SBC");
+insert into caste(casteName) values("NT");
+insert into caste(casteName) values("VJNT");
+
+
+
+insert into religion(religionName) values("Hindu");
+insert into religion(religionName) values("Christian");
+insert into religion(religionName) values("Muslim");
+insert into religion(religionName) values("Sikh");
+
+insert into occupation(occupationName) values("Professional");
+insert into occupation(occupationName) values("Student");
+insert into occupation(occupationName) values("Labour");
+insert into occupation(occupationName) values("Farmer");
+insert into occupation(occupationName) values("Self-Employed");
+insert into occupation(occupationName) values("Others");
+
+
+
+
+insert into district_name(districtName) values("Balod");
+insert into district_name(districtName) values("Baloda Bazar");
+insert into district_name(districtName) values("Balrampur");
+insert into district_name(districtName) values("Bastar");
+insert into district_name(districtName) values("Bemetara");
+insert into district_name(districtName) values("Bijapur");
+insert into district_name(districtName) values("Bilaspur");
+insert into district_name(districtName) values("Dantewada");
+insert into district_name(districtName) values("Dhamtari");
+insert into district_name(districtName) values("Durg");
+insert into district_name(districtName) values("Gariyaband");
+insert into district_name(districtName) values("Janjgir-Champa");
+insert into district_name(districtName) values("Jashpur");
+insert into district_name(districtName) values("Kabirdham");
+insert into district_name(districtName) values("Kanker");
+insert into district_name(districtName) values("Kondagaon");
+insert into district_name(districtName) values("Korba");
+insert into district_name(districtName) values("Koriya");
+insert into district_name(districtName) values("Mahasamund");
+insert into district_name(districtName) values("Mungeli");
+insert into district_name(districtName) values("Narayanpur");
+insert into district_name(districtName) values("Raigarh");
+insert into district_name(districtName) values("Raipur");
+insert into district_name(districtName) values("RajnandgaonSukma");
+insert into district_name(districtName) values("Surajpur");
+insert into district_name(districtName) values("Surguja");
+
+
+
+
+
+Balod
+Baloda Bazar
+Balrampur
+Bastar
+Bemetara
+Bijapur
+Bilaspur
+Dantewada (South Bastar)
+Dhamtari
+Durg
+Gariyaband
+Janjgir-Champa
+Jashpur
+Kabirdham (Kawardha)
+Kanker (North Bastar)
+Kondagaon
+Korba
+Korea (Koriya)
+Mahasamund
+Mungeli
+Narayanpur
+Raigarh
+Raipur
+RajnandgaonSukma
+Surajpur
+Surguja
