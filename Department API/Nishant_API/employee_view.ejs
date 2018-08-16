@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Employee View</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="top_menu.css">
+		<style type="text/css">
+			.table{
+				position: absolute;
+				margin-top: 5%;
+				width: 100%;
+				height: auto;
+				background-color: lightblue;
+				z-index: 0;
+				overflow: auto;
+			}
+
+			table tr th{
+				border: 2px solid black;
+				text-align: center;
+				border-collapse: collapse;
+				padding: 5px;
+			}
+
+			tr{
+				width: 100%;
+			}
+
+			th{
+				width: 10vw;
+			}
+
+			td{
+				text-align: center;
+				/*width: 20%;*/
+			}
+
+			tr th{
+				padding: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Designation</a>
+					<ul>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Schemes</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="#">Update</a></li>
+						<li class="sublist"><a href="#">Remove</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Inbox</a>
+					<ul>
+						<li class="sublist"><a href="#">New</a></li>
+						<li class="sublist"><a href="#">Completed</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#">Employee</a>
+					<ul>
+						<li class="sublist"><a href="#">View</a></li>
+						<li class="sublist"><a href="#">Add</a></li>
+					</ul>
+				</li>
+
+				<li><a href="#">Logout</a></li>
+					
+			</ul>
+		</nav>
+
+		<div class="table" style="overflow-x: auto;">
+			<table>
+				<tr class="column">
+					<th>Employee Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>pincode</th>
+					<th>Designation Name</th>
+					<!-- <th>Date of Creation</th>
+					<th>Date of Deletion</th>
+					<th>Last Modified</th>
+					<th>Is Deleted</th>
+					<th>Is Blocked</th>
+					<th>Email</th> -->
+				</tr>
+				<script type="text/javascript">
+				var row= <%-JSON.stringify(scId)%>;
+				for(var i=0;i<row.length;i++){
+				document.write("<tr>");
+				for(var j=0;j<1;j++){
+				document.write("<td>");
+				document.write(row[i].empId);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].firstName);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].lastName);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].pincode);
+				document.write("</td>");
+				document.write("<td>");
+				document.write(row[i].designationName);
+				document.write("</td>");
+				}
+				document.write("</tr>");
+				}
+				</script>
+			
+			</table>
+
+
+	</body>
+</html>
