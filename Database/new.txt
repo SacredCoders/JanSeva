@@ -14,6 +14,8 @@ dob date NOT NULL,
 sex varchar(100) NOT NULL,
 address varchar(150) NOT NULL,
 city varchar(100) NOT NULL,
+email varchar(100) NOT NULL,
+password varchar(100) NOT NULL,
 caste varchar(100) NOT NULL,
 religion varchar(100) NOT NULL,
 pincode varchar(100) NOT NULL,
@@ -23,11 +25,8 @@ noOfEarnings int(10) NOT NULL,
 salary decimal(30,2) NOT NULL,
 dateOfCreation datetime NOT NULL,
 dateOfDeletion datetime,
-lastModified datetime NOT NULL,
 isDelete varchar(20) NOT NULL DEFAULT 0,
-isBlocked varchar(20) NOT NULL DEFAULT 0,
-email varchar(100) NOT NULL,
-password varchar(100) NOT NULL
+isBlocked varchar(20) NOT NULL DEFAULT 0
 )ENGINE=InnoDB;
 
 create table citizen_verification
@@ -40,209 +39,265 @@ FOREIGN KEY(contactNo) REFERENCES citizen_details(contactNo) ON DELETE CASCADE
 
 //lacks FK constraint(which dept ka scheme??)
 //can use deptId
-deptId varchar(50) NOT NULL,
-FOREIGN KEY (deptId) REFERENCES superadmin.department(deptId) ON DELETE CASCADE,
+
 
 create table if not exists applied_schemes(
 appId varchar(50) PRIMARY KEY NOT NULL,
 contactNo varchar(50) NOT NULL,
-applicationDate date NOT NULL,
 scId varchar(50) NOT NULL,
-applicationStatus varchar(10) NOT NULL,
-FOREIGN KEY (scId) REFERENCES superadmin.scheme_dept_rel(scId) ON DELETE CASCADE,
+deptId varchar(50) NOT NULL,
+FOREIGN KEY (deptId) REFERENCES superadmin.department(deptId) ON DELETE CASCADE,
 FOREIGN KEY (contactNo) REFERENCES citizen_details(contactNo) ON DELETE CASCADE
 )ENGINE=InnoDB;
+
+
 
 create table if not exists announcement(
 deptId varchar(50) NOT NULL,
 title varchar(50) NOT NULL,
-message varchar(50) NOT NULL,
+message text NOT NULL,
 link varchar(100),
-dateOfCreation datetime NOT NULL ,
-FOREIGN KEY (deptId) REFERENCES superadmin.scheme_dept_rel(deptId) ON DELETE CASCADE,
+dateOfCreation date NOT NULL,
+FOREIGN KEY (deptId) REFERENCES superadmin.department(deptId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+create table if not exists notification(
+contactNo varchar(50) NOT NULL,
+appId varchar(50) NOT NULL,
+deptId varchar(50) NOT NULL,
+title varchar(50) NOT NULL,
+message text NOT NULL,
+dateOfCreation date NOT NULL ,
+FOREIGN KEY (appId) REFERENCES applied_schemes(appId) ON DELETE CASCADE,
+FOREIGN KEY (contactNo) REFERENCES citizen_details(contactNo) ON DELETE CASCADE,
+FOREIGN KEY (deptId) REFERENCES superadmin.department(deptId) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 
+create table if not exists subscription
+(
+contactNo varchar(50) NOT NULL,
+deptId varchar(50) NOT NULL,
+FOREIGN KEY (contactNo) REFERENCES citizen_details(contactNo) ON DELETE CASCADE,
+FOREIGN KEY (deptId) REFERENCES superadmin.department(deptId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+
+
 //////DATABASE 2//////////
+applicationDate date NOT NULL,
+applicationStatus varchar(10) NOT NULL,
+
+file
+
+
+
 
 create database waterdept;
 
 
 //city to be used for distribution of schemes in table employee
 
+
+
+
 create table if not exists employee
 (
 empId varchar(50) PRIMARY KEY NOT NULL, 
 firstName varchar(100) NOT NULL,
-LastName varchar(100) NOT NULL,
-pincode varchar(100) NOT NULL,
-designationID varchar(50) NOT NULL,
-dateOfCreation datetime NOT NULL,
-dateOfDeletion datetime ,
-lastModified datetime NOT NULL,
-isDelete varchar(20) NOT NULL DEFAULT 0,
-isBlocked varchar(20) NOT NULL DEFAULT 0,
+lastName varchar(100) NOT NULL,
 email varchar(100) NOT NULL,
 password varchar(100) NOT NULL,
-FOREIGN KEY (designationID) REFERENCES roles(designationID) ON DELETE CASCADE,
-FOREIGN KEY (pincode) REFERENCES taluka_pin_rel(pincode) ON DELETE CASCADE
-)ENGINE=InnoDB;
-
-
-
-create table if not exists taluka_pin_rel
-(
 talukaId varchar(50) NOT NULL,
-pincode varchar(100) NOT NULL, 
-FOREIGN KEY (talukaId) REFERENCES taluka_name(talukaId) ON DELETE CASCADE
+designationId varchar(50) NOT NULL,
+isBlocked varchar(20) NOT NULL DEFAULT 0,
+FOREIGN KEY (designationId) REFERENCES designation_name(designationId) ON DELETE CASCADE,
+FOREIGN KEY (talukaId) REFERENCES superadmin.pin_taluka_rel(talukaId) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-
-
-create table if not exists district_taluka_rel
+create table if not exists designation_name
 (
-districtId varchar(50) NOT NULL,
-talukaId varchar(50) NOT NULL, 
-FOREIGN KEY (districtId) REFERENCES district_name(districtId) ON DELETE CASCADE
-)ENGINE=InnoDB;
-
-create table if not exists district_name
-(
-distrctId varchar(50) PRIMARY KEY NOT NULL,
-districtName varchar(50) NOT NULL, 
+designationId varchar(50) PRIMARY KEY NOT NULL,
+designationName varchar(100) NOT NULL
 )ENGINE=InnoDB;
 
 
-create table if not exists taluka_name
-(
-talukaId varchar(50) PRIMARY KEY NOT NULL,
-talukaName varchar(50) NOT NULL, 
-)ENGINE=InnoDB;
+
+
+insert into employee values(100,"ram","laxman",421503,10);
+insert into employee values(101,"arjun","bheem",421503,5);
+
+
+
+//NOTE::::::appId is the folder names
 
 create table if not exists application_assigned(
+appId varchar(50) PRIMARY KEY NOT NULL,
 empId varchar(50)  NOT NULL,
-appId varchar(50)  NOT NULL,
 dateOfCreation datetime NOT NULL,
 dateOfDeletion datetime ,
 lastModified datetime NOT NULL,
+applicationStatus varchar(150) NOT NULL,
 FOREIGN KEY (empId) REFERENCES employee(empId) ON DELETE CASCADE,
 FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-
+//scId is used to map the folder
 create table if not exists schemes
 (
-scId varchar(50)  NOT NULL, 
-name varchar(100) NOT NULL,
+scId varchar(50) PRIMARY KEY NOT NULL, 
+schemeName varchar(100) NOT NULL,
 startDate date NOT NULL,
 endDate date NOT NULL,
-eligibleCaste varchar(100) NOT NULL,
-eligibleAge varchar(100) NOT NULL,
-eligibleOccupation varchar(100) NOT NULL,
-eligibleIncome varchar(100) NOT NULL,
-eligibleSex varchar(100) NOT NULL,
-eligibleReligion varchar(100) NOT NULL,
-eligibleOthers varchar(100),
+schemeDescription text NOT NULL,
 dateOfCreation datetime NOT NULL,
 dateOfDeletion datetime ,
-lastModified datetime NOT NULL,
-isDelete varchar(20) NOT NULL DEFAULT 0,
-isBlocked varchar(20) NOT NULL DEFAULT 0,
-schemeLink varchar(100) NOT NULL,
-FOREIGN KEY (scId) REFERENCES superadmin.scheme_dept_rel(scId) ON DELETE CASCADE,
-FOREIGN KEY (eligibleCaste) REFERENCES caste(casteId) ON DELETE CASCADE,
-FOREIGN KEY (eligibleOccupation) REFERENCES occupation(occupationId) ON DELETE CASCADE,
-FOREIGN KEY (eligibleReligion) REFERENCES religion(religionId) ON DELETE CASCADE
+isDelete varchar(20) NOT NULL DEFAULT 0
 )ENGINE=InnoDB;
 
-create table caste
+create table if not exists required_documents
 (
-casteId varchar(50) PRIMARY KEY NOT NULL,
-casteName varchar(100) NOT NULL,
+scId varchar(50) NOT NULL,
+documentId varchar(100) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE,
+FOREIGN KEY (documentId) REFERENCES document(documentId) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-create table occupation
+create table if not exists document
 (
-occupationId varchar(50) PRIMARY KEY NOT NULL,
-occupationName varchar(100) NOT NULL,
+documentId varchar(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+documentName varchar(100) NOT NULL
 )ENGINE=InnoDB;
 
-create table religion
+create table if not exists required_eligibility_caste
 (
-religionId varchar(50) PRIMARY KEY NOT NULL,
-religionName varchar(100) NOT NULL,
-)ENGINE=InnoDB;
-
-create table roles
-(
-designationId varchar(50) PRIMARY KEY NOT NULL,
-designationName varchar(100) NOT NULL,
-)ENGINE=InnoDB;
-
-create table file_path_rel
-(
-fileId varchar(50) PRIMARY KEY NOT NULL,
-filepath varchar(100) UNIQUE NOT NULL,
-)ENGINE=InnoDB;
-
-create table user_documents
-(
-fileId varchar(50) NOT NULL,
-appId varchar(50)  NOT NULL,
-categoryId varchar(100) NOT NULL,
-FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE,
-FOREIGN KEY (fileId) REFERENCES file_path_rel(fileId) ON DELETE CASCADE,
-FOREIGN KEY (categoryId) REFERENCES category(categoryId) ON DELETE CASCADE
-)ENGINE=InnoDB;
-
-create table category
-(
-categoryId varchar(50) PRIMARY KEY NOT NULL,
-categoryName varchar(100) NOT NULL
-)ENGINE=InnoDB;
-
-create table system_variables
-(
-
-
-
+scId varchar(50) NOT NULL,
+casteId varchar(50) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE,
+FOREIGN KEY (casteId) REFERENCES superadmin.caste(casteId) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 
 
-create table if not exists documents
+create table if not exists required_eligibility_occupation
 (
-fileId varchar(50) PRIMARY KEY NOT NULL,
-appId varchar(50)  NOT NULL, 
-filepath varchar(100) NOT NULL,
-description varchar(100) NOT NULL,
-FOREIGN KEY (appId) REFERENCES citizens.applied_schemes(appId) ON DELETE CASCADE
+scId varchar(50) NOT NULL,
+occupationId varchar(50) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE,
+FOREIGN KEY (occupationId) REFERENCES superadmin.occupation(occupationId) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 
-create table if not exists record
+
+create table if not exists required_eligibility_age
 (
-scId varchar(50) NOT NULL, 
+scId varchar(50) NOT NULL,
+min int(50) NOT NULL,
+max int(50) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+create table if not exists required_eligibility_district
+(
+scId varchar(50) NOT NULL,
+districtId varchar(50) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE,
+FOREIGN KEY (districtId) REFERENCES superadmin.district_name(districtId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+create table if not exists required_eligibility_religion
+(
+scId varchar(50) NOT NULL,
+religionId varchar(50) NOT NULL,
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE,
+FOREIGN KEY (religionId) REFERENCES superadmin.religion(religionId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+
+create table if not exists required_eligibility_salary
+(
+scId varchar(50) NOT NULL,
+min int(50) NOT NULL,
+max int(50),
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+create table if not exists required_eligibility_sex
+(
+scId varchar(50) NOT NULL,
+sex varchar(10),
+FOREIGN KEY (scId) REFERENCES schemes(scId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+insert into schemes values(2,"janseva","2018-09-09","2018-09-09","hindu","18","student","75000","male","maratha","others","2018-09-09 12:12:12","2018-09-09 12:12:12","2018-09-09 12:12:12",0,0,"some.com");
+
+create table if not exists chats(
 contactNo varchar(50) NOT NULL,
-FOREIGN KEY (scId) REFERENCES superadmin.scheme_dept_rel(scId) ON DELETE CASCADE,
-FOREIGN KEY (contactNo) REFERENCES citizens.citizen_details(contactNo) ON DELETE CASCADE
+message text NOT NULL,
+time datetime NOT NULL,
+FOREIGN KEY (contactNo) REFERENCES citizen_details(contactNo) ON DELETE CASCADE
 )ENGINE=InnoDB;
-
-
 
 
 //////DATABASE 3///////
 create database if not exists superadmin;
 
+
 create table department
 (
 deptId varchar(50) PRIMARY KEY NOT NULL,
 deptName varchar(100) NOT NULL,
+description varchar(256) NOT NULL,
 server varchar(50) NOT NULL
 )ENGINE=InnoDB;
 
-create table if not exists scheme_dept_rel(
-scId varchar(50) PRIMARY KEY  NOT NULL,
-deptId varchar(50) NOT NULL,
-FOREIGN KEY (deptId) REFERENCES department(deptId) ON DELETE CASCADE
+
+
+create table if not exists religion
+(
+religionId varchar(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+religionName varchar(100) NOT NULL
+)ENGINE=InnoDB;
+
+
+create table if not exists caste
+(
+casteId varchar(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+casteName varchar(100) NOT NULL
+)ENGINE=InnoDB;
+
+
+create table if not exists occupation
+(
+occupationId varchar(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+occupationName varchar(100) NOT NULL
+)ENGINE=InnoDB;
+
+create table if not exists pin_taluka_rel
+(
+pincode varchar(100) PRIMARY KEY NOT NULL, 
+talukaId varchar(50) NOT NULL,
+FOREIGN KEY (talukaId) REFERENCES taluka_name(talukaId) ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+create table if not exists taluka_name
+(
+talukaId varchar(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+talukaName varchar(50) NOT NULL 
+)ENGINE=InnoDB;
+
+create table if not exists district_name
+(
+distrctId varchar(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+districtName varchar(50) NOT NULL 
+)ENGINE=InnoDB;
+
+create table if not exists taluka_district_rel
+(
+talukaId varchar(50) NOT NULL, 
+districtId varchar(50)  NOT NULL,
+FOREIGN KEY (districtId) REFERENCES district_name(districtId) ON DELETE CASCADE,
+FOREIGN KEY (talukaId) REFERENCES taluka_name(talukaId) ON DELETE CASCADE
 )ENGINE=InnoDB;
