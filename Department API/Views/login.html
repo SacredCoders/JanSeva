@@ -13,7 +13,8 @@
 				box-sizing: border-box;
 			}
 			body{
-				background-color: #f5683d;
+				/*background-color: #f5683d;*/
+				background: linear-gradient(to right,orange,white,green);
 				width: 100%;
 				height: 100%;
 			}
@@ -47,13 +48,23 @@
 				box-shadow: 1.5vh 1.5vw 3vw grey;
 			}
 
-			.userimg img{
+			/*.userimg img{
 				position: absolute;
 				width:7vw;
 				height: 15vh;
 				border-radius: 50%;
 				margin-left: 6.6vw;
 				margin-top: -17vh;
+			}*/
+
+			i[name="usericon"]{
+				background-color: white;
+				border-radius: 50%;
+				color: blue;
+				position: absolute;
+				font-size: 9vw;
+				margin-left: 5vw;
+				margin-top: -19vh;
 			}
 
 			#username{
@@ -72,14 +83,17 @@
 				width: 18vw;
 				padding:2vh;
 				border-radius: 5vw;
+				outline: none;
 			}
 			input[type="password"]{
 				width: 18vw;
 				padding: 2vh;
 				border-radius: 5vw;
+				outline: none;
 			}
 			.login{
 				position: absolute;
+				color: white;
 				display: inline-block;
 				background-color: blue;
 				width: 5vw;
@@ -87,6 +101,7 @@
 				text-align: center;
 				padding-top: 1.5vh;
 				margin: 6vh 15vh 5vh;
+				outline: none;
 			}
 
 			.login:hover{
@@ -95,6 +110,7 @@
 				transform-origin: center; 
 				transform: scale(1.3);
 				cursor: pointer;
+				outline: none;
 			}
 
 			/*.or{
@@ -132,7 +148,9 @@
 		<div class="mainContainer">
 			<!-- <div class="back">Back</div> -->
 			<form class="form_area">
-				<div class="userimg"><img src="usericon.jpg" width="75px" height="75px"></div>
+				<!-- <div class="userimg"><img src="usericon.jpg" width="75px" height="75px"></div> -->
+
+				<div><i name="usericon" class="fa fa-user-circle-o"></i></div>
 				
 				<p id="username">Username :</p>
 				<input type="text" name="username" placeholder="Enter the username">
@@ -141,7 +159,7 @@
 				<input type="password" name="password" placeholder="Enter the password">
 				<br>
 
-				<button class="login">Login</button>
+				<button type="submit" value="submit" class="login"> Login </button>
 				<!-- <p class="or"> Or </p>
 				<div class="signup">Signup</div>
 				 -->

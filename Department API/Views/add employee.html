@@ -3,17 +3,19 @@
 	<head>
 		<title>Add Employee</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="top_menu.css">
 		<style type="text/css">
 			.add_employee{
 				position: absolute;
-				background-color: lightblue;
+				background-color: rgb(0,167,247);
 				width: 27vw;
 				height: 80vh;
 				margin-left: 35%;
 				margin-top: 6%;
 				border-radius: 5%;
 				padding: 4vw 5vw;
+				box-shadow: 1.5vh 1.5vw 3vw grey;
 			}
 
 			.employee_id{
@@ -50,14 +52,27 @@
 				width: 16vw;
 				padding: 0.7vh;
 				border-radius: 25px;
+				outline: none;
+			}
+
+			select[name="designation_id"]{
+				width: 16vw;
+				padding: 0.7vh;
+				border-radius: 25px;
+				outline: none;
+				/*margin-bottom: 1vh;*/
 			}
 
 			input[type="submit"]{
 				margin-left: 34%;
 				margin-top: 12%;
-				padding: 2vh;
+				padding: 3vh;
 				background-color: blue;
 				border: none;
+				border-radius: 2vw;
+				font-size: 2vh;
+				font-weight: bold;
+				outline: none;
 			}
 
 			input[type="submit"]:hover{
@@ -71,49 +86,57 @@
 	<body>
 		<nav class="menu">
 			<ul class="main_ul">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Designation</a>
+				<li><a href="home.html"><i name="usericon" class="fa fa-home"></i> Home </a></li>
+				<li><a href="#"><i name="usericon" class="fa fa-id-card"></i> Designation </a>
 					<ul>
-						<li class="sublist"><a href="#">Add</a></li>
-						<li class="sublist"><a href="#">Access Control</a></li>
+						<li class="sublist"><a href="add_designation.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="access_control.html"><i name="usericon" class="fa fa-universal-access" style="margin-left: -0.1vw;font-size: 1vw;"></i> Access Control</a></li>
 					</ul>
 				</li>
 					
-				<li><a href="#">Schemes</a>
+				<li><a href="#"><i name="usericon" class="fa fa-sitemap"></i> Schemes </a>
 					<ul>
-						<li class="sublist"><a href="#">View</a></li>
-						<li class="sublist"><a href="#">Add</a></li>
-						<li class="sublist"><a href="#">Update</a></li>
-						<li class="sublist"><a href="#">Remove</a></li>
+						<li class="sublist"><a href="view_schemes.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add_scheme.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-level-up"></i> Update </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-minus-square-o"></i> Remove </a></li>
 					</ul>
 				</li>
 					
-				<li><a href="#">Inbox</a>
+				<li><a href="#"><i name="usericon" class="fa fa-envelope-open-o"></i> Inbox </a>
 					<ul>
-						<li class="sublist"><a href="#">New</a></li>
-						<li class="sublist"><a href="#">Completed</a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-envelope-o"></i> New </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-check-square-o"></i> Completed </a></li>
 					</ul>
 				</li>
 					
-				<li><a href="#">Employee</a>
+				<li><a href="#"><i name="usericon" class="fa fa-user"></i> Employee </a>
 					<ul>
-						<li class="sublist"><a href="#">View</a></li>
-						<li class="sublist"><a href="#">Add</a></li>
+						<li class="sublist"><a href="employee_view.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add employee.html"><i name="usericon" class="fa fa-user-plus"></i> Add </a></li>
 					</ul>
 				</li>
 
-				<li><a href="#">Logout</a></li>
+				<li><a href="#"><i name="usericon" class="fa fa-power-off"></i> Logout </a></li>
 					
 			</ul>
 		</nav>
-
 		<div class="main_content">
 			<form class="add_employee">
 				<p class="employee_id">Employee Id : <input type="text" name="emp_id" placeholder="Enter the employee id"></p>
+
 				<p class="first_name">First Name : <input type="text" name="first_name" placeholder="Enter the first name of Employee"></p>
+
 				<p class="last_name">Last Name : <input type="text" name="last_name" placeholder="Enter the last name of Employee "></p>
+
 				<p class="pin_code">Pin Code : <input type="text" name="pin_code" placeholder="Enter the pin code"></p>
-				<p class="designation_id">Designation Id : <input type="text" name="designation_id" placeholder="Enter the Designation Id"></p>
+
+				<p class="designation_id">Designation Id : <select name="designation_id" placeholder="Enter the Designation Id">
+					<option value=""></option>
+					<option value=""></option>
+				</select>
+				</p>
+
 				<p class="email">E-mail : <input type="email" name="email" placeholder="Enter the E-mail of Employee"></p>
 				<input type="submit" name="submit">
 			</form>
