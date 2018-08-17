@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Assign Work to Employee</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="top_menu.css">
+		<style type="text/css">
+			
+			.employee_name{
+				position: absolute;
+				background-color: lightgreen;
+				width: 20vw;
+				height: 5vh;
+				margin-left: 16%;
+				margin-top: 10%;
+				border-radius: 20px;
+				padding: 1vh;
+				padding-left: 6vh;
+			}
+
+			.dropdown_box{
+				width: 9vw;
+				height: 3vh;
+				border-radius: 20px;
+				padding-left: 1vh;
+			}
+
+			.assign_form{
+				position: absolute;
+				background-color: lightblue;
+				width: 80vw;
+				height: auto;
+				margin-left: 16%;
+				margin-top: 15%;
+				padding: 6vh;
+				border-radius: 30px;
+				box-shadow: 1.5vh 1.5vw 3vw grey;
+			}
+
+			.name{
+				display: inline;
+				margin-bottom: 2vh;
+				padding-bottom: 2vh;
+			}
+
+			.phone_no{
+				display: inline;
+				margin-left: 9.7vw;
+			}
+
+			.schemeId{
+				display: inline;
+			}
+
+			.schemeName{
+				display: inline;
+				margin-left: 9.7vw;
+			}
+
+			input[type="text"], input[type="tel"]{
+				width: 16vw;
+				border-radius: 20px;
+				padding-bottom: 1vh;
+				margin-bottom: 2vh;
+				margin-left: 2vh;
+			}
+
+			.documents{
+				height: 2vh;
+			}
+
+			.check{
+				position: absolute;
+				margin-left: 85%;
+				margin-top: -6.7%;
+				padding-right: 1%;				
+				font-size: 1.5vw;
+			}
+
+			.assign{
+				position: absolute;
+				border-radius: 20px;
+				padding: 2vh;
+				background-color: blue;
+				margin-left: 15%;
+				margin-top: -1.1vw;
+				/*margin-bottom: 10vw;*/
+			}
+
+			.assign:hover{
+				background-color: lightgreen;
+				transform: scale(1.2);
+				box-shadow: 0.7vw 0.7vw 3vw grey;
+			}
+
+			input[type="checkbox"]{
+				position: absolute;
+				margin-left: 91%;
+				margin-top: -6.2%;
+				transform: scale(1.5);
+			}
+
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="home.html"><i name="usericon" class="fa fa-home"></i> Home </a></li>
+				<li><a href="#"><i name="usericon" class="fa fa-id-card"></i> Designation </a>
+					<ul>
+						<li class="sublist"><a href="add_designation.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="access_control.html"><i name="usericon" class="fa fa-universal-access" style="margin-left: -0.1vw;font-size: 1vw;"></i> Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-sitemap"></i> Schemes </a>
+					<ul>
+						<li class="sublist"><a href="view_schemes.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add_scheme.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-level-up"></i> Update </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-minus-square-o"></i> Remove </a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-envelope-open-o"></i> Inbox </a>
+					<ul>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-envelope-o"></i> New </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-check-square-o"></i> Completed </a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-user"></i> Employee </a>
+					<ul>
+						<li class="sublist"><a href="employee_view.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add employee.html"><i name="usericon" class="fa fa-user-plus"></i> Add </a></li>
+					</ul>
+				</li>
+
+				<li><a href="#"><i name="usericon" class="fa fa-power-off"></i> Logout </a></li>
+					
+			</ul>
+		</nav>
+		<form class="assign_employee">
+
+			<div class="employee_name">Employee : 
+			<select class="dropdown_box">
+				<option value="nishant">Nishant</option>
+				<option value="jayesh">Jayesh</option>
+				<option value="alok">Alok</option>
+				<option value="pawan">Pawan</option>
+				<option value="pritesh">Pritesh</option>
+				<option value="sonu">Sonu</option>
+			</select>
+			<button  class="assign" name="assign">Assign</button>
+			</div>
+
+			<div class="assign_form">
+				<div>
+					<p class="name">Name :<input type="text" name="name" style="margin-left: 3.3vw;" disabled></p>
+
+					<p class="phone_no">Phone Number :<input type="tel" name="phone" style="margin-left: 0.8vw;" disabled></p>
+				</div>
+				
+				<div>
+					<p class="schemeId">Scheme Id :<input type="text" name="scheme_id" disabled></p>
+
+					<p class="schemeName">Scheme Name :<input type="text" name="scheme_name" disabled></p>			
+				</div>
+
+				<p class="documents"><a href="#">Documents</a></p>
+
+				<div>
+					<p class="check">Check</p><input type="checkbox" name="checkbox" style="size: 20px;">
+				</div>
+				
+			</div>
+			<br>
+		</form>
+	</body>
+</html>
