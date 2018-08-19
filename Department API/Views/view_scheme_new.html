@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Scheme</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="top_menu.css">
+		<style type="text/css">
+			
+			.viewScheme{
+				position: absolute;
+				width: 90%;
+				height: auto;
+				background-color: lightblue;
+				margin: 5%;
+				padding: 2%;
+				border-radius: 25px;
+			}
+
+			.col1{
+				background-color: lightgreen;
+				width: 40%;
+				display: inline-block;
+				padding: 3%;
+				border-radius: 25px;
+				margin-left: 3%;
+				/*padding-top: 7%;*/
+			}
+
+			.col2{
+				background-color: lightgreen;
+				width: 40%;
+				display: inline-block;
+				padding: 3%;
+				border-radius: 25px;
+				margin-left: 7%;
+			}
+
+			.scId, .schemeName, .startDate, .endDate, .cast, .age, .occupation, .sex, .religions, .others, .dateOfCreation, .dateOfDeletion, .lastModified, .isDelete, .isBlocked{
+				font-size: 17px;
+				margin: 5% 3% ;
+			}
+
+			input[type="text"]{
+				width: 15vw;
+				height: auto;
+				padding: 0.4vh;
+				border-radius: 25px;
+				margin-left: 5%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="home.html"><i name="usericon" class="fa fa-home"></i> Home </a></li>
+				<li><a href="#"><i name="usericon" class="fa fa-id-card"></i> Designation </a>
+					<ul>
+						<li class="sublist"><a href="add_designation.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="access_control.html"><i name="usericon" class="fa fa-universal-access" style="margin-left: -0.1vw;font-size: 1vw;"></i> Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-sitemap"></i> Schemes </a>
+					<ul>
+						<li class="sublist"><a href="view_schemes.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add_scheme.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-level-up"></i> Update </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-minus-square-o"></i> Remove </a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-envelope-open-o"></i> Inbox </a>
+					<ul>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-envelope-o"></i> New </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-check-square-o"></i> Completed </a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-user"></i> Employee </a>
+					<ul>
+						<li class="sublist"><a href="employee_view.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add employee.html"><i name="usericon" class="fa fa-user-plus"></i> Add </a></li>
+					</ul>
+				</li>
+
+				<li><a href="#"><i name="usericon" class="fa fa-power-off"></i> Logout </a></li>
+					
+			</ul>
+		</nav>
+
+		<div>
+			<form class="viewScheme">
+			<br>
+
+				<div class="col1">
+
+					<p style="font-weight: bolder;font-size: 5vh;margin-bottom: 7%;"> Scheme</p>
+
+					<p class="scId">Scheme Id &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="scId" disabled></p>
+
+					<p class="schemeName">Scheme Name &nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="schemeName" disabled></p>
+
+					<p class="startDate">Start Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="startDate" disabled></p>
+
+					<p class="endDate">End Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="endDate" disabled></p>
+
+					<p class="cast">Cast &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="cast" disabled></p>
+
+					<p class="age">Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="age" disabled></p>
+
+					<p class="occupation">Occupation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="occupation" disabled></p>
+				</div>
+
+				<div class="col2">
+					<p class="sex">Sex &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="sex" disabled></p>
+
+					<p class="religions">Religions &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="religions" disabled></p>
+
+					<p class="others">Others &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="others" disabled></p>
+
+					<p class="dateOfCreation">Date of Creation &nbsp;&nbsp;&nbsp;:<input type="text" name="dateOfCreation" disabled></p>
+
+					<p class="dateOfDeletion">Date of Deletion &nbsp;&nbsp;&nbsp;:<input type="text" name="dateOfDeletion" disabled></p>
+
+					<p class="lastModified">Last Modified &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="lastModified" disabled></p>
+
+					<p class="isDelete">Is Delete &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="isDelete" disabled></p>
+
+					<p class="isBlocked">Is Blocked &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:<input type="text" name="isBlocked" disabled></p>
+				</div>
+			</form>	
+		</div>
+
+	</body>
+</html>
