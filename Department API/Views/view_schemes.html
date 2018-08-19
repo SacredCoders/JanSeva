@@ -57,15 +57,18 @@
 
 			.table{
 				position: absolute;
-				margin-top: 5%;
+				margin-top: 7%;
 				width: 100%;
 				height: auto;
 				background-color: lightblue;
 			}
 
+			table{
+				border-collapse: collapse;
+			}
+
 			table tr th{
 				border: 1px solid black;
-				border-collapse: collapse;
 				text-align: center;
 			}
 
@@ -75,6 +78,7 @@
 
 			th{
 				width: 6.667%;
+				padding-bottom: 1vh;
 			}
 
 			td{
@@ -84,6 +88,10 @@
 
 			tr th{
 				padding: 2px;
+			}
+
+			table>thead>tr>th{
+				border-bottom: hidden;
 			}
 
 		</style>
@@ -129,23 +137,39 @@
 		
 		<div class="table">
 			<table>
-				<tr class="column">
-					<th>scId</th>
-					<th>Name</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>Eligible Caste</th>
-					<th>Eligible Age</th>
-					<th>Eligible Occupation</th>
-					<th>Eligible Sex</th>
-					<th>Eligible Religion</th>
-					<th>Eligible Others</th>
-					<th>Date of Creation</th>
-					<th>Date of Deletion</th>
-					<th>Last Modified</th>
-					<th>Is Delete</th>
-					<th>Is Blocked</th>
-				</tr>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th colspan="6" style="border-bottom: 1px solid grey">Eligible Candidates</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="column">
+						<th rowspan="2">scId</th>
+						<th>Name</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th> Caste</th>
+						<th> Age</th>
+						<th> Occupation</th>
+						<th> Sex</th>
+						<th> Religion</th>
+						<th> Others</th>
+						<th>Date of Creation</th>
+						<th>Date of Deletion</th>
+						<th>Last Modified</th>
+						<th>Is Delete</th>
+						<th>Is Blocked</th>
+					</tr>
+				</tbody>
 
 			</table>
 
