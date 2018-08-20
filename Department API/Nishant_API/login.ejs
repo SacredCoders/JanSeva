@@ -13,10 +13,12 @@
 				box-sizing: border-box;
 			}
 			body{
-				background-color: #f5683d;
+				/*background-color: #f5683d;*/
+				background: linear-gradient(to right,orange,white,green);
 				width: 100%;
 				height: 100%;
 			}
+
 			/*.back{
 				position: absolute;
 				background-color: lightblue;
@@ -25,11 +27,13 @@
 				margin-top: -12vh;
 				padding: 2vh;
 			}
+
 			.back:hover{
 				background-color: green;
 				transform: scale(1.2);
 				box-shadow: 0.5vw 0.5vw 2vw grey;
 			}*/
+
 			.form_area{
 				position: relative;
 				width: 23vw;
@@ -43,20 +47,33 @@
 				backface-visibility: hidden;
 				box-shadow: 1.5vh 1.5vw 3vw grey;
 			}
-			.userimg img{
+
+			/*.userimg img{
 				position: absolute;
 				width:7vw;
 				height: 15vh;
 				border-radius: 50%;
 				margin-left: 6.6vw;
 				margin-top: -17vh;
+			}*/
+
+			i[name="usericon"]{
+				background-color: white;
+				border-radius: 50%;
+				color: blue;
+				position: absolute;
+				font-size: 9vw;
+				margin-left: 5vw;
+				margin-top: -19vh;
 			}
+
 			#username{
 				font-size: 1.5vw;
 				padding-top: 2vh;
 				margin-top: 2vh;
 				margin-bottom: 1.5vh;
 			}
+
 			#password{
 				font-size: 1.5vw;
 				padding-top: 4vh;
@@ -66,14 +83,17 @@
 				width: 18vw;
 				padding:2vh;
 				border-radius: 5vw;
+				outline: none;
 			}
 			input[type="password"]{
 				width: 18vw;
 				padding: 2vh;
 				border-radius: 5vw;
+				outline: none;
 			}
 			.login{
 				position: absolute;
+				color: white;
 				display: inline-block;
 				background-color: blue;
 				width: 5vw;
@@ -81,13 +101,18 @@
 				text-align: center;
 				padding-top: 1.5vh;
 				margin: 6vh 15vh 5vh;
+				outline: none;
 			}
+
 			.login:hover{
 				background-color: lightgreen;
 				box-shadow: 0.5vw 0.5vw 2vw grey;
 				transform-origin: center; 
 				transform: scale(1.3);
+				cursor: pointer;
+				outline: none;
 			}
+
 			/*.or{
 				display: inline;
 				padding: 0px;
@@ -96,6 +121,7 @@
 				font-size: 20px;
 				font-weight: bold;
 			}
+
 			.signup{
 				display: inline-block;
 				background-color: red;
@@ -111,6 +137,7 @@
 				background-color: lightgreen;
 				box-shadow: 5px 10px 20px grey;
 			}*/
+
 			/*.form_area:hover {
 				transform: rotateY(-180deg);
 			}*/
@@ -118,20 +145,26 @@
 	</head>
 
 	<body>
-		<h1><%= hello %></h1>
+	<script type="text/javascript">alert("<%= response %>")</script>
 		<div class="mainContainer">
 			<!-- <div class="back">Back</div> -->
-			<form class="form_area" action='/login' method="post">
-				<div class="userimg"><img src="usericon.jpg" alt="hagga" width="75px" height="75px"></div>
+			<form class="form_area" action="/login" method="post">
+				<!-- <div class="userimg"><img src="usericon.jpg" width="75px" height="75px"></div> -->
+
+				<div><i name="usericon" class="fa fa-user-circle-o"></i></div>
 				
 				<p id="username">Username :</p>
-				<input type="text" name="username" placeholder="Enter the username">
+				<input type="text" name="emp_id" placeholder="Enter the username" required>
 
 				<p id="password">Password :</p>
-				<input type="password" name="password" placeholder="Enter the password">
+				<input type="password" name="password" placeholder="Enter the password" required>
 				<br>
 
-				<input type="submit" class="login" name="submit">
+				<button type="submit" value="submit" class="login"> Login </button>
+				<!-- <p class="or"> Or </p>
+				<div class="signup">Signup</div>
+				 -->
+	<!-- 		<input type="submit" name="submit"> -->
 					
 				</div>
 			</form>
