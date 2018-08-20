@@ -8,7 +8,7 @@ body{
 /*	width: 100%;
 	height: 100%;*/
 	/*background-color: #f5683d;*/
-	background: linear-gradient(to right,orange,white,green);
+	background:linear-gradient(to right,rgb(221,220,215),rgb(160,193,255),rgb(18,75,134));
 }
 
 .menu{
@@ -17,7 +17,7 @@ body{
 }
 
 .main_ul{
-	/*position: absolute;*/
+	/*position: absolute;
 	/*background-color: black;*/
 	width: 100%;
 	margin-left: 20%;

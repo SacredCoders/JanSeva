@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Check Application</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="top_menu.css">
+
+		<style type="text/css">
+			
+			.container{
+				position: absolute;
+				background-color: lightblue;
+				width: auto;
+				height: auto;
+				padding: 4vw;
+				margin: 10%;
+				margin-left: 30%;
+				border-radius: 2vw;
+				box-shadow: 1.5vh 1.5vw 3vw gray;
+			}
+
+			.application_view{
+				background-color: lightgreen;
+				padding: 3vw;
+				padding-bottom: 1vw;
+				width: auto;
+				height: auto;
+				border-radius: 2vw;
+			}
+
+			p{
+				margin-bottom: 2vw;
+			}
+
+			p>a{
+				margin-right: 3vw;
+			}
+
+			input[type="checkbox"]{
+				transform: scale(1.2);
+			}
+
+			input[type="submit"]{
+				margin-top: 2vh;
+				margin-left: 35%;
+				padding:2vh;
+				background-color: blue;
+				border-radius: 25px;
+				border-style: none;
+			}
+
+			input[type="submit"]:hover{
+				background-color: lightgreen;
+				transform: scale(1.3);
+				box-shadow: 0.7vw 0.7vw 3vw grey;
+			}
+
+		</style>
+
+	</head>
+	<body>
+		<nav class="menu">
+			<ul class="main_ul">
+				<li><a href="home.html"><i name="usericon" class="fa fa-home"></i> Home </a></li>
+				<li><a href="#"><i name="usericon" class="fa fa-id-card"></i> Designation </a>
+					<ul>
+						<li class="sublist"><a href="add_designation.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="access_control.html"><i name="usericon" class="fa fa-universal-access" style="margin-left: -0.1vw;font-size: 1vw;"></i> Access Control</a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-sitemap"></i> Schemes </a>
+					<ul>
+						<li class="sublist"><a href="view_schemes.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add_scheme.html"><i name="usericon" class="fa fa-plus-square-o"></i> Add </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-level-up"></i> Update </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-minus-square-o"></i> Remove </a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-envelope-open-o"></i> Inbox </a>
+					<ul>
+						<li class="sublist"><a href="application_view.html"><i name="usericon" class="fa fa-envelope-o"></i> New </a></li>
+						<li class="sublist"><a href="#"><i name="usericon" class="fa fa-check-square-o"></i> Completed </a></li>
+					</ul>
+				</li>
+					
+				<li><a href="#"><i name="usericon" class="fa fa-user"></i> Employee </a>
+					<ul>
+						<li class="sublist"><a href="employee_view.html"><i name="usericon" class="fa fa-eye"></i> View </a></li>
+						<li class="sublist"><a href="add employee.html"><i name="usericon" class="fa fa-user-plus"></i> Add </a></li>
+					</ul>
+				</li>
+
+				<li><a href="#"><i name="usericon" class="fa fa-power-off"></i> Logout </a></li>
+					
+			</ul>
+		</nav>
+
+		<div class="container">
+			<h3 style="margin-bottom: 1vw;">Check Application</h3>
+			<form>
+			<div class="application_view">
+				
+					<p><a href="#">Application 1</a><input type="checkbox" name="check"></p>
+					<p><a href="#">Application 2</a><input type="checkbox" name="check"></p>
+					
+				
+			</div>
+			<div class="submit"><input type="submit" name="submit"></div>
+			</form>
+
+	</body>
+</html>
